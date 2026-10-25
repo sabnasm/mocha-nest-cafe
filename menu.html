@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mocha Nest - Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> /*These tell the browser to connect early to Google's font servers, which can help fonts load faster*/
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #021b25;
+  color: #f4f1df;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #021b25;
+  padding: 15px 40px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  animation: navbarDrop 0.8s ease-out both;
+}
+
+.navbar .logo {
+  color: #FDFBF7;
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #e3d5ca;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #d4a373;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background: #d4a373;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* ================= CART ================= */
+
+.cart {
+  border: 1px solid #d4a373;
+  color: #FDFBF7;
+  background: transparent;
+  padding: 9px 17px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s ease;
+}
+
+.cart:hover {
+  background: #d4a373;
+  color: #021b25;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255,134,21,0.25);
+}
+
+/* ================= MENU HERO ================= */
+
+.menu-hero {
+  min-height: 320px;
+  padding: 65px 4% 35px;
+  position: relative;
+  background:
+    linear-gradient(
+      rgba(2,27,37,0.78),
+      rgba(2,27,37,0.92)
+    ),
+    url("hero-coffee.jpg") center/cover no-repeat;
+  overflow: hidden;
+  animation: heroReveal 1s ease-out both;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+
+.small-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #ff8615;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  animation: textRise 0.8s ease-out both;
+}
+
+.small-title::after {
+  content: "";
+  width: 72px;
+  height: 2px;
+  background: #ff8615;
+}
+
+.hero-content h1 {
+  margin: 0;
+  font-size: 48px;
+  line-height: 1.08;
+  font-weight: 700;
+  color: #f4f1df;
+  animation: textRise 0.9s ease-out 0.2s both;
+}
+
+.hero-content p {
+  margin: 12px 0 28px;
+  color: #b9c4c7;
+  font-size: 17px;
+  animation: textRise 0.9s ease-out 0.4s both;
+}
+
+.script {
+  position: absolute;
+  right: 5%;
+  top: 95px;
+  color: #ff8615;
+  font-family: cursive;
+  font-size: 27px;
+  line-height: 1.15;
+  transform: rotate(-7deg);
+  text-align: center;
+  z-index: 2;
+  animation: floatNote 3s ease-in-out infinite;
+}
+
+/* ================= FILTER BUTTONS ================= */
+
+.filters {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 5;
+}
+
+.filter-btn {
+  border: 1px solid #506873;
+  background: rgba(2,27,37,0.65);
+  color: #e5e8df;
+  padding: 10px 28px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  transition: transform 0.25s ease,
+              background-color 0.3s ease,
+              color 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.filter-btn:hover {
+  transform: translateY(-3px);
+  border-color: #ff8615;
+  color: #ff8615;
+  box-shadow: 0 5px 15px rgba(255,134,21,0.2);
+}
+
+.filter-btn.active {
+  background: #ff8615;
+  border-color: #ff8615;
+  color: white;
+  box-shadow: 0 4px 14px rgba(255,134,21,0.25);
+}
+
+/* ================= MENU SECTION ================= */
+
+.menu-section {
+  padding: 25px 4% 45px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* ================= MENU CARDS ================= */
+
+.card {
+  min-height: 190px;
+  background: #062631;
+  border: 1px solid #164352;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  transition: transform 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+  position: relative;
+  min-width: 0;
+  animation: cardEntrance 0.65s ease-out both;
+}
+
+/* Cards appear one by one */
+
+.card:nth-child(1)  { animation-delay: 0.08s; }
+.card:nth-child(2)  { animation-delay: 0.16s; }
+.card:nth-child(3)  { animation-delay: 0.24s; }
+.card:nth-child(4)  { animation-delay: 0.32s; }
+.card:nth-child(5)  { animation-delay: 0.40s; }
+.card:nth-child(6)  { animation-delay: 0.48s; }
+.card:nth-child(7)  { animation-delay: 0.56s; }
+.card:nth-child(8)  { animation-delay: 0.64s; }
+.card:nth-child(9)  { animation-delay: 0.72s; }
+.card:nth-child(10) { animation-delay: 0.80s; }
+.card:nth-child(11) { animation-delay: 0.88s; }
+.card:nth-child(12) { animation-delay: 0.96s; }
+
+.card:hover {
+  transform: translateY(-7px);
+  border-color: #ff8615;
+  box-shadow: 0 12px 28px rgba(255,134,21,0.13);
+}
+
+/* ================= IMAGES ================= */
+
+.image-box {
+  width: 138px;
+  min-width: 138px;
+  height: 158px;
+  border-radius: 11px;
+  overflow: hidden;
+  position: relative;
+  background: #183640;
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .image-box img {
+  transform: scale(1.09);
+}
+
+.popular {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #ff8615;
+  color: white;
+  padding: 5px 9px;
+  border-radius: 15px;
+  font-size: 11px;
+  font-weight: 600;
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+/* ================= CARD CONTENT ================= */
+
+.card-content {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 7px 0 2px;
+}
+
+.card-content h3 {
+  margin: 0 0 9px;
+  font-size: 15px;
+  color: #f4f1df;
+  font-weight: 600;
+}
+
+.card-content p {
+  margin: 0;
+  color: #b8c4c7;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* ================= PRICE AND ADD BUTTON ================= */
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #f4f1df;
+  white-space: nowrap;
+}
+
+.add-btn {
+  border: none;
+  background: #ff8615;
+  color: white;
+  padding: 8px 13px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: transform 0.25s ease,
+              background-color 0.25s ease,
+              box-shadow 0.25s ease;
+  white-space: nowrap;
+}
+
+.add-btn:hover {
+  background: #ff9d3d;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 5px 14px rgba(255,134,21,0.3);
+}
+
+.add-btn:active {
+  transform: scale(0.94);
+}
+
+/* ================= CART MESSAGE ================= */
+
+.cart-message {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  background: #d4a373;
+  color: #021b25;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.3s ease,
+              transform 0.3s ease;
+  z-index: 200;
+}
+
+.cart-message.show {
+  opacity: 1;
+  transform: translateY(0);
+  animation: messagePop 0.35s ease-out both;
+}
+
+/* ================= ANIMATION KEYFRAMES ================= */
+
+@keyframes navbarDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroReveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes textRise {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatNote {
+  0%, 100% {
+    transform: translateY(0) rotate(-7deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-4deg);
+  }
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(255,134,21,0);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(255,134,21,0.5);
+  }
+}
+
+@keyframes messagePop {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 1200px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nav-links {
+    gap: 15px;
+  }
+
+  .navbar {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+
+/* ================= SMALL TABLET ================= */
+
+@media (max-width: 800px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+  }
+
+  .hero-content h1 {
+    font-size: 40px;
+  }
+
+  .script {
+    display: none;
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 700px) {
+  .navbar {
+    height: auto;
+    padding: 18px 5%;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .navbar .logo {
+    font-size: 24px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+  }
+
+  .menu-hero {
+    padding: 50px 5% 30px;
+  }
+
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+  .hero-content p {
+    font-size: 15px;
+  }
+
+  .filters {
+    gap: 8px;
+  }
+
+  .filter-btn {
+    padding: 9px 18px;
+    font-size: 12px;
+  }
+
+  .menu-section {
+    padding: 20px 5% 40px;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: 170px;
+  }
+
+  .image-box {
+    width: 125px;
+    min-width: 125px;
+    height: 145px;
+  }
+}
+
+/* ================= VERY SMALL MOBILE ================= */
+
+@media (max-width: 450px) {
+  .nav-links {
+    gap: 9px;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+  }
+
+  .cart {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+
+  .hero-content h1 {
+    font-size: 31px;
+  }
+
+  .card {
+    gap: 12px;
+  }
+
+  .image-box {
+    width: 110px;
+    min-width: 110px;
+    height: 135px;
+  }
+
+  .card-content h3 {
+    font-size: 14px;
+  }
+
+  .card-content p {
+    font-size: 12px;
+  }
+
+  .price {
+    font-size: 14px;
+  }
+
+  .add-btn {
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+}
+
+/* ================= ACCESSIBILITY ================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+  <div class="logo">Mocha Nest</div>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="menu.html" class="active">Menu</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="order.html">Order Online or Reserve</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li>
+      <button class="cart" type="button">
+        🛒 Cart (<span id="cartCount">0</span>)
+      </button>
+    </li>
+  </ul>
+</nav>
+
+<!-- ================= MENU HERO ================= -->
+
+<section class="menu-hero">
+  <div class="hero-content">
+    <div class="small-title">OUR MENU</div>
+
+    <h1>Great Coffee,<br>Better Moments</h1>
+
+    <p>Freshly brewed. Perfectly paired. Just for you.</p>
+
+    <div class="filters">
+      <button class="filter-btn active" data-category="all" type="button">All</button>
+      <button class="filter-btn" data-category="hot" type="button">Hot Coffee</button>
+      <button class="filter-btn" data-category="cold" type="button">Cold Coffee</button>
+      <button class="filter-btn" data-category="milkshake" type="button">Milkshakes</button>
+      <button class="filter-btn" data-category="snack" type="button">Snacks</button>
+      <button class="filter-btn" data-category="dessert" type="button">Desserts</button>
+    </div>
+  </div>
+
+  <div class="script">Good Food<br>Good Mood ♡</div>
+</section>
+
+<!-- ================= MENU ITEMS ================= -->
+
+<section class="menu-section">
+  <div class="menu-grid" id="menuGrid">
+
+    <!-- 1. CAPPUCCINO -->
+    <div class="card" data-category="hot">
+      <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=600&q=80" alt="Cappuccino">
+        <span class="popular">Popular</span>
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Cappuccino</h3>
+          <p>Rich espresso with steamed milk and a light foam.</p>
+        </div>
+        <div class="bottom">
+          <span class="price">₹149</span>
+          <button class="add-btn" type="button">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. ICED COFFEE -->
+    <div class="card" data-category="cold">
+      <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80" alt="Iced Coffee">
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Iced Coffee</h3>
+          <p>Chilled coffee with creamy goodness.</p>
+        </div>
+        <div class="bottom">
+          <span class="price">₹169</span>
+          <button class="add-btn" type="button">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. MOCHA -->
+    <div class="card" data-category="hot">
+      <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&w=600&q=80" alt="Mocha">
+        <span class="popular">Popular</span>
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Mocha</h3>
+          <p>Espresso blended with chocolate and steamed milk.</p>
+        </div>
+        <div class="bottom">
+          <span class="price">₹179</span>
+          <button class="add-btn" type="button">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. LATTE -->
+    <div class="card" data-category="hot">
+      <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1572449043416-55f4685c9bb7?auto=format&fit=crop&w=600&q=80" alt="Latte">
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Latte</h3>
+          <p>Smooth espresso with steamed milk.</p>
+        </div>
+        <div class="bottom">
+          <span class="price">₹159</span>
+          <button class="add-btn" type="button">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. COLD BREW -->
+    <div class="card" data-category="cold">
+      <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=600&q=80" alt="Cold Brew">
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Cold Brew</h3>
+          <p>Slow brewed for a smoother, richer taste.</p>
+        </div>
+        <div class="bottom">
+          <span class="price">₹169</span>
+          <button class="add-btn" type="button">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. CARAMEL FRAPPE -->
+    <div class="card" data-category="milkshake">
+      <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80" alt="Caramel Frappe">
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Caramel Frappé</h3>
+          <p>Blended coffee with caramel and ice.</p>
+        </div>
+        <div class="bottom">
+          <span class="price">₹189</span>
+          <button class="add-btn" type="button">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. CHOCOLATE MILKSHAKE -->
+    <div class="card" data-category="milkshake">
+      <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&w=600&q=80" alt="Chocolate Milkshake">
+        <span class="popular">Popular</span>
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Chocolate Milkshake</h3>
+          <p>Rich chocolate blended with creamy milk.</p>
+        </div>
+        <div class="bottom">
+          <span class="price">₹179</span>
+          <button class="add-btn" type="button">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. VEG SANDWICH -->
+    <div class="card" data-category="snack">
+      <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80" alt="Veg Sandwich">
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Veg Sandwich</h3>
+          <p>Fresh vegetables with creamy cheese and toasted bread.</p>
+        </div>
+        <div class="bottom">
+          <span class="price">₹139</span>
+          <button class="add-btn" type="button">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. FRENCH FRIES -->
+    <div class="card" data-category="snack">
+      <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=80" alt="French Fries">
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>French Fries</h3>
+          <p>Crispy golden fries served with a tasty dip.</p>
+        </div>
+        <div class="bottom">
+          <span class="price">₹119</span>
+          <button class="add-btn" type="button">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. GARLIC BREAD -->
+    <div class="card" data-category="snack">
+      <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1573140401552-3fab0b24306f?auto=format&fit=crop&w=600&q=80" alt="Garlic Bread">
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Garlic Bread</h3>
+          <p>Warm toasted bread with buttery garlic flavor.</p>
+        </div>
+        <div class="bottom">
+          <span class="price">₹129</span>
+          <button class="add-btn" type="button">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. BLUEBERRY CHEESECAKE -->
+    <div class="card" data-category="dessert">
+      <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=600&q=80" alt="Blueberry Cheesecake">
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Blueberry Cheesecake</h3>
+          <p>Creamy, rich and perfectly sweet.</p>
+        </div>
+        <div class="bottom">
+          <span class="price">₹149</span>
+          <button class="add-btn" type="button">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. CHOCOLATE BROWNIE -->
+    <div class="card" data-category="dessert">
+      <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80" alt="Chocolate Brownie">
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Chocolate Brownie</h3>
+          <p>Warm, gooey and irresistible.</p>
+        </div>
+        <div class="bottom">
+          <span class="price">₹129</span>
+          <button class="add-btn" type="button">Add +</button>
+        </div>
+      </div>
+    </div>
+
+<!-- EXTRA HOT COFFEE -->
+<div class="card" data-category="hot">
+  <div class="image-box">
+    <img src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&w=600&q=80" alt="Espresso">
+  </div>
+  <div class="card-content">
+    <h3>Espresso</h3>
+    <p>Rich and bold coffee for your day.</p>
+    <div class="bottom">
+      <span class="price">₹99</span>
+      <button class="add-btn">Add +</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-category="hot">
+  <div class="image-box">
+    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80" alt="Americano">
+  </div>
+  <div class="card-content">
+    <h3>Americano</h3>
+    <p>Smooth coffee with a rich aroma.</p>
+    <div class="bottom">
+      <span class="price">₹119</span>
+      <button class="add-btn">Add +</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-category="hot">
+  <div class="image-box">
+    <img src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=600&q=80" alt="Flat White">
+  </div>
+  <div class="card-content">
+    <h3>Flat White</h3>
+    <p>Velvety milk blended with espresso.</p>
+    <div class="bottom">
+      <span class="price">₹169</span>
+      <button class="add-btn">Add +</button>
+    </div>
+  </div>
+</div>
+
+<!-- EXTRA COLD DRINKS -->
+<div class="card" data-category="cold">
+  <div class="image-box">
+    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=600&q=80" alt="Iced Mocha">
+  </div>
+  <div class="card-content">
+    <h3>Iced Mocha</h3>
+    <p>Chilled coffee with chocolate goodness.</p>
+    <div class="bottom">
+      <span class="price">₹189</span>
+      <button class="add-btn">Add +</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-category="cold">
+  <div class="image-box">
+    <img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?auto=format&fit=crop&w=600&q=80" alt="Strawberry Smoothie">
+  </div>
+  <div class="card-content">
+    <h3>Strawberry Smoothie</h3>
+    <p>A refreshing strawberry treat.</p>
+    <div class="bottom">
+      <span class="price">₹179</span>
+      <button class="add-btn">Add +</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-category="milkshake">
+  <div class="image-box">
+    <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80" alt="Oreo Frappe">
+  </div>
+  <div class="card-content">
+    <h3>Oreo Frappé</h3>
+    <p>Creamy, chocolatey and delicious.</p>
+    <div class="bottom">
+      <span class="price">₹199</span>
+      <button class="add-btn">Add +</button>
+    </div>
+  </div>
+</div>
+
+<!-- EXTRA MILKSHAKES -->
+<div class="card" data-category="milkshake">
+  <div class="image-box">
+    <img src="https://images.unsplash.com/photo-1579954115563-e72bf1381629?auto=format&fit=crop&w=600&q=80" alt="Vanilla Milkshake">
+  </div>
+  <div class="card-content">
+    <h3>Vanilla Milkshake</h3>
+    <p>Classic vanilla in every sip.</p>
+    <div class="bottom">
+      <span class="price">₹159</span>
+      <button class="add-btn">Add +</button>
+    </div>
+  </div>
+</div>
+
+<!-- EXTRA SNACKS -->
+<div class="card" data-category="snack">
+  <div class="image-box">
+    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Cheese Burger">
+  </div>
+  <div class="card-content">
+    <h3>Cheese Burger</h3>
+    <p>A tasty burger loaded with cheese.</p>
+    <div class="bottom">
+      <span class="price">₹179</span>
+      <button class="add-btn">Add +</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-category="snack">
+  <div class="image-box">
+    <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80" alt="Paneer Sandwich">
+  </div>
+  <div class="card-content">
+    <h3>Paneer Sandwich</h3>
+    <p>Grilled sandwich with spiced paneer.</p>
+    <div class="bottom">
+      <span class="price">₹169</span>
+      <button class="add-btn">Add +</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-category="snack">
+  <div class="image-box">
+    <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=80" alt="Peri Peri Fries">
+  </div>
+  <div class="card-content">
+    <h3>Peri Peri Fries</h3>
+    <p>Crispy fries with spicy seasoning.</p>
+    <div class="bottom">
+      <span class="price">₹139</span>
+      <button class="add-btn">Add +</button>
+    </div>
+  </div>
+</div>
+
+<!-- EXTRA DESSERTS -->
+<div class="card" data-category="dessert">
+  <div class="image-box">
+    <img src="https://images.unsplash.com/photo-1616541823729-00fe0aacd32c?auto=format&fit=crop&w=600&q=80" alt="Red Velvet Cake">
+  </div>
+  <div class="card-content">
+    <h3>Red Velvet Cake</h3>
+    <p>Soft cake with a creamy frosting.</p>
+    <div class="bottom">
+      <span class="price">₹169</span>
+      <button class="add-btn">Add +</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-category="dessert">
+  <div class="image-box">
+    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80" alt="Chocolate Lava Cake">
+  </div>
+  <div class="card-content">
+    <h3>Chocolate Lava Cake</h3>
+    <p>Chocolate cake with a gooey centre.</p>
+    <div class="bottom">
+      <span class="price">₹159</span>
+      <button class="add-btn">Add +</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-category="dessert">
+  <div class="image-box">
+    <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=600&q=80" alt="Tiramisu">
+  </div>
+  <div class="card-content">
+    <h3>Tiramisu</h3>
+    <p>A creamy Italian coffee dessert.</p>
+    <div class="bottom">
+      <span class="price">₹199</span>
+      <button class="add-btn">Add +</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-category="dessert">
+  <div class="image-box">
+    <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=600&q=80" alt="Donuts">
+  </div>
+  <div class="card-content">
+    <h3>Donuts</h3>
+    <p>Soft, sweet and perfect with coffee.</p>
+    <div class="bottom">
+      <span class="price">₹99</span>
+      <button class="add-btn">Add +</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" data-category="dessert">
+  <div class="image-box">
+    <img src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=600&q=80" alt="Waffles">
+  </div>
+  <div class="card-content">
+    <h3>Waffles</h3>
+    <p>Golden waffles with a sweet finish.</p>
+    <div class="bottom">
+      <span class="price">₹189</span>
+      <button class="add-btn">Add +</button>
+    </div>
+  </div>
+</div>
+
+  </div>
+</section>
+ 
+<!-- CART NOTIFICATION -->
+
+<div class="cart-message" id="cartMessage" role="status" aria-live="polite">
+  Added to cart ☕
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+let cartCount = 0;
+
+const cartNumber = document.getElementById("cartCount");
+const message = document.getElementById("cartMessage");
+let messageTimer;
+
+// Load existing cart or create an empty one
+let cart = JSON.parse(localStorage.getItem("mochaCart") || "[]");
+
+// Restore cart count
+cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+cartNumber.textContent = cartCount;
+
+/* ADD TO CART */
+document.querySelectorAll(".add-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    const card = button.closest(".card");
+
+    const name = card.querySelector("h3").textContent.trim();
+    const priceText = card.querySelector(".price").textContent;
+    const price = Number(priceText.replace(/[^\d.]/g, ""));
+
+    const existingItem = cart.find(item => item.name === name);
+
+    if (existingItem) {
+      existingItem.quantity++;
+    } else {
+      cart.push({
+        name: name,
+        price: price,
+        quantity: 1
+      });
+    }
+
+    // Save the actual products
+    localStorage.setItem("mochaCart", JSON.stringify(cart));
+
+    cartCount++;
+    cartNumber.textContent = cartCount;
+
+    message.classList.add("show");
+    clearTimeout(messageTimer);
+
+    messageTimer = setTimeout(() => {
+      message.classList.remove("show");
+    }, 1500);
+  });
+});
+
+/* CATEGORY FILTER */
+const filterButtons = document.querySelectorAll(".filter-btn");
+const cards = document.querySelectorAll(".card");
+
+filterButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    filterButtons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+
+    const category = button.dataset.category;
+
+    cards.forEach(card => {
+      if (category === "all" ||
+          card.dataset.category === category) {
+        card.style.display = "flex";
+        card.style.animation = "none";
+        void card.offsetWidth;
+        card.style.animation = "";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

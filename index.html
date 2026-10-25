@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!--helps to get all the contain properly on the page.-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caffe</title>
+    <link rel="stylesheet" href="style.css"> <!--to access the style-->
+</head>
+<body>
+   <div class="navbar"> <!--div makes a box of container & navbar is a class name for css-->
+    <div class="logo">Mocha Nest</div>
+    <ul class="nav-links">    <!--unorder list with class name nav-links.-->
+        <li><a href="index.html">Home</a></li> <!--it creates a clickable link like when clicking on home it opens index.html file contain.-->
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="order.html">Order Online or Reserve</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+</div>
+   <section class="hero-template"> <!--section is used to groups the related content.-->
+    <div class="hero-left"> <!--creates a box container at the left.-->
+        <span class="welcome-tag">WELCOME</span> <!--span is used for inline text like small text.-->
+        <h1>Start your day with a coffee</h1>
+        <p class="roasted-text">ROASTED WITH LOVE</p>
+        <p>Discover handcrafted coffee, fresh bakes, and a cozy space made for every moment.</p>
+        <a href="menu.html" class="btn-order">Order Now</a> <!--clickable btn order(when clicks on it it will open the menu)and class=btn-order is class name for the css styling-->
+    </div>
+    <div class="hero-cards"> <!--creates a box container-->
+        <div class="card-item"> <!--1st box for img-->
+            <img src="hot-coffee.jpg" alt="Hot Coffee"> <!--insert the img and alt is used if the img is not displayed then it will show the text of alt.-->
+            <h3>Hot Coffee</h3> <!--heading for the img-->
+            <p>Rich and warm brews made to perfection.</p> <!--para/description for the img-->
+        </div>
+        <div class="card-item"> <!--2nd container-->
+            <img src="iced-coffee.jpg" alt="Iced Coffee">
+            <h3>Iced Coffee</h3>
+            <p>Chilled, refreshing coffee to cool you down.</p>
+        </div>
+        <div class="card-item">
+            <img src="milkshake.jpg" alt="Coffee Milk Shake">
+            <h3>Coffee Milk Shake</h3>
+            <p>Sweet, creamy, and indulgent blends.</p>
+        </div>
+    </div>
+</section>
+<footer>
+        <p>© 2026 Mocha Nest | A Practice Project ☕</p>
+    </footer>
+</body>
+</html>

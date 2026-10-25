@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Mocha Nest</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <h2 class="logo">☕ Mocha Nest</h2>
+
+        <div class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="order.html">Order Online or Reserve</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <p class="tagline">LET'S CONNECT</p>
+        <h1>We'd Love to <span>Hear From You.</span></h1>
+        <p>Questions, ideas, or just a little coffee talk?</p>
+    </header>
+
+    <main class="contact-container">
+
+        <section class="contact-info">
+            <h2>Let's Talk ☕</h2>
+            <p>Have something on your mind? Send us a message!</p>
+
+            <div class="info-card">
+                <span>✉️</span>
+                <div>
+                    <h3>Email Us</h3>
+                    <p>hello@example.com</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <span>💬</span>
+                <div>
+                    <h3>Say Hello</h3>
+                    <p>We'd love to hear your ideas.</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <span>☕</span>
+                <div>
+                    <h3>Coffee & Conversations</h3>
+                    <p>Every great idea starts somewhere.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2>Drop Us a Message</h2>
+
+            <form id="contactForm" novalidate>
+
+                <label for="name">Your Name</label>
+                <input type="text" id="name"
+                       placeholder="Enter your name">
+                <small class="error" id="nameError"></small>
+
+                <label for="email">Your Email</label>
+                <input type="email" id="email"
+                       placeholder="Enter your email">
+                <small class="error" id="emailError"></small>
+
+                <label for="message">Your Message</label>
+                <textarea id="message" rows="5"
+                          placeholder="Write something..."></textarea>
+                <small class="error" id="messageError"></small>
+
+                <button type="submit" class="send-btn">
+                    Send Message →
+                </button>
+
+                <p id="formStatus" aria-live="polite"></p>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Mocha Nest | A Practice Project ☕</p>
+    </footer>
+
+    <script src="contact.js"></script>
+</body>
+</html>

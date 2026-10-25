@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Online | Mocha Nest</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <h2 class="logo">☕ Mocha Nest</h2>
+        <div class="nav-links">
+            <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="order.html">Order Online or Reserve</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <p class="tagline">YOUR FAVOURITES, ONE CLICK AWAY</p>
+        <h1>Your Coffee, <span>Your Way.</span></h1>
+        <p>Choose your favourites and add them to your cart.</p>
+    </header>
+
+    <main class="order-layout">
+        <section class="products">
+            <h2>Our Favourites ☕</h2>
+
+            <div class="product-grid" id="productGrid"></div>
+        </section>
+
+        <aside class="cart">
+            <h2>🛒 Your Cart</h2>
+
+            <div id="cartItems">
+                <p class="empty-cart">Your cart is empty.</p>
+            </div>
+
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotal">₹0</span>
+            </div>
+
+            <button id="clearCart" class="clear-btn">
+                Clear Cart
+            </button>
+
+            <p class="demo-note">
+                Practice project only. No real orders are placed.
+            </p>
+        </aside>
+    </main>
+
+    <footer>
+        <p>© 2026 Mocha Nest | A Practice Project ☕</p>
+    </footer>
+
+    <script src="order.js"></script>
+</body>
+</html>

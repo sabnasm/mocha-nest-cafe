@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Mocha Nest</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar"> <!--defines nav bar-->
+        <h2 class="logo">☕ Mocha Nest</h2> <!--heading in nav bar-->
+        <div class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="order.html">Order Online or Reserve</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        </div>
+    </nav>
+    <section class="hero">
+        <p class="tagline">OUR STORY</p>
+        <h1>More Than Just <span>Coffee.</span></h1> <!--wraps the word “Coffee.” so CSS can style that word separately.-->
+        <p>A little corner of comfort, crafted with love.</p>
+        <a href="#story" class="btn">Discover Our Story →</a> <!--href="#story" jumps to a section on the same page whose ID is story-->
+    </section>
+    <section class="story" id="story"><!--id="story" gives this section a unique identifier.The hero button uses href="#story" to jump here-->
+        <div class="story-image">
+            <img
+                src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=900"
+                alt="Cozy coffee shop interior">
+        </div>
+        <div class="story-text">
+            <p class="tagline">WELCOME TO MOCHA NEST</p>
+            <h2>A Place to Feel at Home</h2>
+            <p>
+                Mocha Nest is a fictional café. Imagine a place where people
+                enjoy delicious coffee, share stories, and create
+                beautiful memories.
+            </p>
+            <p>
+                From the first sip to the last bite, every moment
+                is meant to feel warm, relaxing, and special.
+            </p>
+        </div>
+    </section>
+    <section class="values">
+        <h2>What Makes Us Special?</h2>
+        <div class="value-cards">
+            <div class="card">
+                <h3>☕ Great Coffee</h3>
+                <p>A little coffee, a lot of happiness.</p>
+            </div>
+            <div class="card">
+                <h3>💛 Made with Love</h3>
+                <p>Every detail is designed with care.</p>
+            </div>
+            <div class="card">
+                <h3>🌿 Cozy Vibes</h3>
+                <p>Your imaginary happy place to relax.</p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>© 2026 Mocha Nest | A Practice Project ☕</p>
+    </footer>
+<script>
+    const revealElements = document.querySelectorAll(
+        ".story-image, .story-text, .card"
+    );   /*const declares a variable that cannot be reassigned // revealElements the variable's name // document represents the current webpage // querySelectorAll() finds all elements matching the supplied CSS selectors // (".story-image, .story-text, .card") selects elements with any of these three classes // (;) ends the statement.*/
+
+    revealElements.forEach((element) => {
+        element.classList.add("reveal");
+    });    /*forEach() runs a function once for every selected element // (element) => defines an arrow function and element refers to the current element // element.classList accesses the element's list of CSS classes // .add("reveal") adds the reveal class.*/
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15
+    });
+
+    revealElements.forEach((element) => {
+        observer.observe(element);
+    });
+</script>
+</body>
+</html>
